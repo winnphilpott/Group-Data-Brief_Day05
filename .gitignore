@@ -21,8 +21,9 @@ output/statistics/*
 !output/statistics/.gitkeep
 
 # Large / sensitive raw data
-data/clean/*
-!data/clean/.gitkeep
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/*.R
 data/processed/*
 !data/processed/.gitkeep
 
