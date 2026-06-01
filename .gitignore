@@ -26,6 +26,7 @@ data/raw/*
 !data/raw/*.csv
 data/processed/*
 !data/processed/.gitkeep
+!data/processed/*.csv
 
 # macOS
 .DS_Store
