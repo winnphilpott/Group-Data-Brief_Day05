@@ -4,10 +4,8 @@ library(here)
 # Source this file at the top of any script that needs these paths.
 
 # Data
-PATH_DATA_RAW        <- here("data", "clean")       # raw / incoming data
-PATH_DATA_CLEAN      <- here("data", "clean")
+PATH_DATA_RAW        <- here("data", "raw")
 PATH_DATA_PROCESSED  <- here("data", "processed")
-PATH_DATA_DOCS       <- here("data", "documentation")
 
 # Output
 PATH_FIGURES    <- here("output", "figures")

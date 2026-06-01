@@ -32,8 +32,7 @@ project_root/
 │       ├── analyze/
 │       └── visualize/
 ├── data/
-│   ├── documentation/
-│   ├── clean/
+│   ├── raw/
 │   └── processed/
 ├── output/
 │   ├── figures/
