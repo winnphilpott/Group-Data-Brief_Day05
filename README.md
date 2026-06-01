@@ -2,7 +2,16 @@
 
 ## Overview
 
-<!-- One paragraph describing the project, data source(s), and key question(s). -->
+Practicing our collaboration skills on GitHub to merge six data/analysis repositories into one, write a joint
+data brief grounded in shared analysis, and document it for replication. 
+
+Deliverables (as a group):
+- A single joint data repository containing everyone’s harmonized indicators, code,
+and outputs: send the link to the public repo to seiter@virginia.edu.
+- A joint data brief reporting headline regression-based summary statistics for each
+indicator (run a regression or two and interpret!).
+- Replication documentation (one README) sufficient for someone outside the
+group to reproduce the brief.
 
 ## How to run
 
@@ -48,4 +57,4 @@ project_root/
 
 ## Contributors
 
-<!-- List group members here -->
+Grace Carver, Josie Fischman, Ali Hunter, Winn Philpott, Lucie Talikoff, Jason Ye
