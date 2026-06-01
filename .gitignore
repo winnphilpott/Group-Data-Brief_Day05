@@ -21,10 +21,12 @@ output/statistics/*
 !output/statistics/.gitkeep
 
 # Large / sensitive raw data
-data/clean/*
-!data/clean/.gitkeep
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/*.csv
 data/processed/*
 !data/processed/.gitkeep
+!data/processed/*.csv
 
 # macOS
 .DS_Store
