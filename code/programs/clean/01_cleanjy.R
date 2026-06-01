@@ -4,7 +4,7 @@
 
 library(dplyr)
 
-df <- read.csv("data/raw/wdi_raw.csv", stringsAsFactors = FALSE)
+df <- read.csv("~/Group-Data-Brief_Day05/data/raw/wdi_raw.csv", stringsAsFactors = FALSE)
 
 # ── 1. Remove all non-country rows ───────────────────────────────────────────
 # WB aggregate iso3c codes (regional groups, income tiers, lending groups,
@@ -116,7 +116,7 @@ df <- df %>%
   mutate(iso2c = ifelse(iso3c == "NAM" & is.na(iso2c), "NA", iso2c))
 
 # ── 5. Write output ───────────────────────────────────────────────────────────
-write.csv(df, "data/processed/wdi_cleanjy.csv", row.names = FALSE)
+write.csv(df, "~/Group-Data-Brief_Day05/data/processed/wdi_cleanjy.csv", row.names = FALSE)
 
 # ── Summary ───────────────────────────────────────────────────────────────────
 cat("Rows:     ", nrow(df), "\n")
