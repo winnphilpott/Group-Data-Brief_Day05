@@ -1,0 +1,254 @@
+*2.Day_5_Application_Assignment_Data.do
+
+/* 
+	Data assembly program for Day 5 Application Assignment 
+	
+	Global data directories assigned in 1.Day_5_Application_Assignment_Master.do
+	Run that first
+
+*/ 
+
+*** Create Country List 
+clear
+clear
+input str3 countrycode
+"AFG"
+"AGO"
+"ALB"
+"AND"
+"ARE"
+"ARG"
+"ARM"
+"ATG"
+"AUS"
+"AUT"
+"AZE"
+"BDI"
+"BEL"
+"BEN"
+"BFA"
+"BGD"
+"BGR"
+"BHR"
+"BHS"
+"BIH"
+"BLR"
+"BLZ"
+"BOL"
+"BRA"
+"BRB"
+"BRN"
+"BTN"
+"BWA"
+"CAF"
+"CAN"
+"CHE"
+"CHL"
+"CHN"
+"CIV"
+"CMR"
+"COD"
+"COG"
+"COL"
+"COM"
+"CPV"
+"CRI"
+"CUB"
+"CYP"
+"CZE"
+"DEU"
+"DJI"
+"DMA"
+"DNK"
+"DOM"
+"DZA"
+"ECU"
+"EGY"
+"ERI"
+"ESP"
+"EST"
+"ETH"
+"FIN"
+"FJI"
+"FRA"
+"FSM"
+"GAB"
+"GBR"
+"GEO"
+"GHA"
+"GIN"
+"GMB"
+"GNB"
+"GNQ"
+"GRC"
+"GRD"
+"GTM"
+"GUY"
+"HND"
+"HRV"
+"HTI"
+"HUN"
+"IDN"
+"IND"
+"IRL"
+"IRN"
+"IRQ"
+"ISL"
+"ISR"
+"ITA"
+"JAM"
+"JOR"
+"JPN"
+"KAZ"
+"KEN"
+"KGZ"
+"KHM"
+"KIR"
+"KNA"
+"KOR"
+"KWT"
+"LAO"
+"LBN"
+"LBR"
+"LBY"
+"LCA"
+"LIE"
+"LKA"
+"LSO"
+"LTU"
+"LUX"
+"LVA"
+"MAR"
+"MCO"
+"MDA"
+"MDG"
+"MDV"
+"MEX"
+"MHL"
+"MKD"
+"MLI"
+"MLT"
+"MMR"
+"MNE"
+"MNG"
+"MOZ"
+"MRT"
+"MUS"
+"MWI"
+"MYS"
+"NAM"
+"NER"
+"NGA"
+"NIC"
+"NLD"
+"NOR"
+"NPL"
+"NRU"
+"NZL"
+"OMN"
+"PAK"
+"PAN"
+"PER"
+"PHL"
+"PLW"
+"PNG"
+"POL"
+"PRK"
+"PRT"
+"PRY"
+"PSE"
+"QAT"
+"ROU"
+"RUS"
+"RWA"
+"SAU"
+"SDN"
+"SEN"
+"SGP"
+"SLB"
+"SLE"
+"SLV"
+"SMR"
+"SOM"
+"SRB"
+"SSD"
+"STP"
+"SUR"
+"SVK"
+"SVN"
+"SWE"
+"SWZ"
+"SYC"
+"SYR"
+"TCD"
+"TGO"
+"THA"
+"TJK"
+"TKM"
+"TLS"
+"TON"
+"TTO"
+"TUN"
+"TUR"
+"TUV"
+"TZA"
+"UGA"
+"UKR"
+"URY"
+"USA"
+"UZB"
+"VCT"
+"VEN"
+"VNM"
+"VUT"
+"WSM"
+"YEM"
+"ZAF"
+"ZMB"
+"ZWE"
+end
+
+*** Save Country List as .dta 
+save "$ProcessedData/CountryList.dta", replace
+
+*** Import raw datafile 
+import delimited "$RawData/wdi_raw.csv", clear
+
+*** Clean raw datafile 
+* Rename variables to something usable
+rename nygdppcapcd gdp_pc
+rename egelcaccszs elec_access
+rename egelcrnwxzs renewable_elec
+rename spdynle00in life_exp
+rename aglndfrstzs forest_area
+rename spurbtotlinzs urban_pop
+rename enatmpm25mcm3 pm25
+rename enghgco2rtgdpppkd carbon_intensity
+rename shstammrt maternal_mortality
+rename egusepcapkgoe energy_use
+rename iso3c countrycode 
+merge m:1 countrycode using "$ProcessedData/CountryList", keepusing(countrycode)
+keep if _merge == 3
+drop _merge 
+// only keep observations for the members of the Country List 
+* Destring year
+destring year, replace
+* Convert string NAs to actual missing values
+foreach var of varlist gdp_pc elec_access renewable_elec life_exp forest_area urban_pop pm25 carbon_intensity maternal_mortality energy_use {
+    capture destring `var', replace force
+}
+* Label variables
+label var gdp_pc "GDP per capita (current USD)"
+label var elec_access "Electricity access (% of population)"
+label var renewable_elec "Renewable electricity (% of total)"
+label var life_exp "Life expectancy at birth"
+label var forest_area "Forest area (% of land area)"
+label var urban_pop "Urban population (% of total)"
+label var pm25 "PM2.5 air pollution (mcg/m3)"
+label var carbon_intensity "Carbon intensity of GDP"
+label var maternal_mortality "Maternal mortality rate"
+label var energy_use "Energy use per capita (kg oil equivalent)"
+* Set as panel data
+encode countrycode, gen(country_id)
+xtset country_id year
+save "/Users/lucietalikoff/Documents/UVA 2026 Bootcamp/Group-Data-Brief_Day05/data/processed/wdi_clean.dta", replace
