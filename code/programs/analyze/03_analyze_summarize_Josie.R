@@ -47,6 +47,6 @@ pm_le_reg <- lm(data=df, log(gdp_per_cap)~life_exp+pm2.5)
 
 
 # save tables to results
-#write.csv(pm_sum, "results/pm25_summary.csv", row.names=FALSE)
-#write.csv(le_sum, "results/le_summary.csv", row.names=FALSE)
+write.csv(pm_sum, "output/statistics/pm25_summary.csv", row.names=FALSE)
+write.csv(le_sum, "output/statistics/le_summary.csv", row.names=FALSE)
 
