@@ -9,13 +9,10 @@ PATH_DATA_CLEAN      <- here("data", "clean")
 PATH_DATA_PROCESSED  <- here("data", "processed")
 PATH_DATA_DOCS       <- here("data", "documentation")
 
-# Results
-PATH_FIGURES    <- here("results", "figures")
-PATH_TABLES     <- here("results", "tables")
-PATH_STATISTICS <- here("results", "statistics")
-
-# Analysis outputs
-PATH_ANALYSIS   <- here("analysis")
+# Output
+PATH_FIGURES    <- here("output", "figures")
+PATH_TABLES     <- here("output", "tables")
+PATH_STATISTICS <- here("output", "statistics")
 
 # Paper / brief
 PATH_PAPER      <- here("paper")

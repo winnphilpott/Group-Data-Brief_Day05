@@ -35,8 +35,7 @@ project_root/
 │   ├── documentation/
 │   ├── clean/
 │   └── processed/
-├── analysis/
-├── results/
+├── output/
 │   ├── figures/
 │   ├── tables/
 │   └── statistics/
