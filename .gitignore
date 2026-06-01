@@ -23,6 +23,7 @@ output/statistics/*
 # Large / sensitive raw data
 data/raw/*
 !data/raw/.gitkeep
+!data/raw/*.R
 data/processed/*
 !data/processed/.gitkeep
 
