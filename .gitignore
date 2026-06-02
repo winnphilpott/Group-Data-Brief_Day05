@@ -19,6 +19,7 @@ output/statistics/*
 !output/tables/*.csv
 !output/tables/*.tex
 !output/statistics/.gitkeep
+!output/statistics/*.csv
 
 # Large / sensitive raw data
 data/raw/*
