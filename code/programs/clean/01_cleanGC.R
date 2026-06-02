@@ -17,6 +17,8 @@ library(tidyverse)
 library(data.table)
 library(here)
 
+here::i_am("data/raw/wdi_raw.csv")
+
 # Read raw data;
 
 WorldBank <- read.csv(here("data", "raw", "wdi_raw.csv"))
